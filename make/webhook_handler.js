@@ -1,0 +1,3 @@
+// Helper to transform scraped school data into formatted Airtable records const input = item.raw_scraped_data;
+
+return { "School Name": input.name.trim(), "City": input.location.city, "Sport": input.meta.primary_sport || "General", "Logo_Search_Query": official logo for ${input.name} ${input.location.city}, "Access_Code": (input.name.substring(0,3) + Math.floor(1000 + Math.random() * 9000)).toUpperCase() };
