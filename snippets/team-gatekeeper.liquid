@@ -1,0 +1,5 @@
+{% comment %} Logic to gate team-specific collections using an access code. Place this in your collection.liquid template. {% endcomment %}
+
+{% assign is_team_store = collection.title | contains: 'Store:' %}
+
+{% if is_team_store %} {% if customer.tags contains collection.handle or session.team_access_code == collection.handle %} <div class="team-store-content"> <h1>Welcome, {{ collection.title | remove: 'Store:' }}</h1> {% for product in collection.products %} {% include 'product-card' %} {% endfor %} </div> {% else %} <div class="gate-overlay"> <h2>Enter your Team Code to view this store</h2> <form action="/apps/verify-team" method="POST"> <input type="text" name="team_code" placeholder="Enter Code e.g. TIGERS2025"> <button type="submit">Access Store</button> </form> </div> {% endif %} {% endif %}
